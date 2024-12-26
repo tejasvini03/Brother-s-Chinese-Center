@@ -1,0 +1,59 @@
+.logo
+{
+    height: 200px;
+    width: 200px;
+
+}
+.link
+{
+    margin-left:50px;
+    font-size:20px;
+}
+.main{
+    margin: 20px;
+    
+
+    background-color: #E3F5E2;
+
+}
+.image
+{
+    display: flex;
+            justify-content: center; /* Centers horizontally */
+            align-items: center;     /* Centers vertically */
+            height: 100vh;           /* 100% of the viewport height */
+            margin: 0;
+             max-width: 100%;   /* Ensures image fits within the viewport */
+            height: auto;
+            margin-bottom: 50px;
+}
+.header
+{
+     background: linear-gradient(to right, #A7FAA1, #D0FC8D); 
+     box-shadow: 6px 4px 3px 3px ;
+     font-size: 50px;
+     margin: 30px;
+
+}
+.header h2{
+    color: white;
+    }
+ @media (max-width: 768px) {
+            .header {
+                font-size: 1.5rem;
+            }
+            .logo {
+                max-width: 80px;
+            }
+            .nav-link {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                font-size: 1.2rem;
+            }
+        }}

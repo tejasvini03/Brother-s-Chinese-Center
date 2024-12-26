@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Table Restaurant</title>
+    <link rel="stylesheet" href="page2.html">
+    <link rel="stylesheet" href="main_menue.html">
+    <link rel="stylesheet" type="text/css" href="home_menue.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+ .sidebar2 {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+       background: linear-gradient(to right,#5A0808, #660000);
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+    }
+
+    .sidebar2 a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidebar2 a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidebar2 .close-btn2 {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #app2 {
+        transition: margin-left .3s;
+        padding: 20px;
+    }
+
+    span {
+        font-size: 30px;
+        cursor: pointer; color:#660000;
+    }
+        #app {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+        }
+
+        /* Header Styling */
+        .header {
+            background: linear-gradient(to right,#663300, #660000);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Button Container */
+        .button-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .button-container button {
+            background-color: #EBE415;
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 1.5em;
+            font-weight: 500;
+            background: linear-gradient(to right, #cc6600, #ffff00);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container button:hover {
+            transform: translateY(-5px);
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: linear-gradient(to right,#663300, #660000);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        .footer-logo img {
+            border-radius: 50%;
+            width: 100px;
+        }
+
+        footer h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        footer p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.5em;
+        }
+
+        .social-links a:hover {
+            color: #EBE415;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .button-container button {
+                width: 100%; /* Full width on smaller screens */
+                font-size: 1.2em;
+                padding: 18px;
+            }
+
+            .footer-logo img {
+                width: 80px;
+            }
+
+            footer h3 {
+                font-size: 1.5em;
+            }
+
+            footer p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .button-container button {
+                font-size: 1em;
+                padding: 12px;
+            }
+
+            .footer-logo img {
+                width: 60px;
+            }
+
+            footer h3 {
+                font-size: 1.2em;
+            }
+
+            footer p {
+                font-size: 0.9em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+      <div id="mySidebar2" class="sidebar2">
+    <a href="javascript:void(0)" class="close-btn2" onclick="closeNav()">×</a>
+    <a href="page2.html">About Us</a>
+    <a href="main_meue.html">Veg Menu</a>
+    <a href="non_veg.html">Non-Veg Menu</a>
+</div>
+
+<!-- Main content area -->
+<div id="app2">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    
+    <!-- Add more content here as needed -->
+</div>
+
+    <div id="app">
+        <!-- Logo at the top of the page -->
+        <img src="logo2.jpg" alt="Green Table Logo" class="logo">
+
+        <!-- Header with additional information about the restaurant -->
+        <div class="header">
+            <h1>Welcome to ब्रदर्स चायनिज सेंटर</h1>
+            <p>Discover the taste of authentic Chinese cuisine, made fresh and full of flavor.</p>
+        </div>
+
+        <!-- Buttons for Veg and Non-Veg -->
+        <div class="button-container">
+           <a href="main_meue.html"> <button>Veg</button></a>
+            <a href="non_veg.html"><button>Non-Veg</button></a>
+        </div>
+    </div>
+
+    <!-- Footer with Information -->
+    <footer>
+        <div class="footer-logo">
+            <!-- Image added at the center of the footer -->
+            <img src="selfPicture.jpg" alt="Footer Logo">
+
+        </div>
+        <p>Mr. Hari Sambhaji Patil</p>
+        <h3>ब्रदर्स चायनिज सेंटर</h3>
+        <p>Location: Forever Food Mall, Bondre Nagar, Phulewadi ring road in front of Super Bazar, Kolhapur</p>
+        <p>Open: Monday - Sunday, 11:30 AM - 10:00 PM</p>
+        <p>Mobile No: 7972944030</p>
+        <div class="social-links">
+            <p>Follow Me On:</p>
+            <a href="https://www.instagram.com/patil_harish_4030/profilecard/?igsh=MWFjbzZ1dnR1YnplMg%3D%3D" title="Instagram">Instagram</a>
+        </div>
+    </footer>
+    <script>
+           function openNav() {
+        document.getElementById("mySidebar2").style.width = "250px";  // Set sidebar width to 250px
+        document.getElementById("app2").style.marginLeft = "250px";   // Push the content to the right
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar2").style.width = "0";  // Set sidebar width to 0
+        document.getElementById("app2").style.marginLeft = "0";   // Reset the content margin
+    }
+    </script>
+
+</body>
+</html>

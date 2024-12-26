@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Attendance</title>
+   <style type="text/css">
+       body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+select, button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+}
+
+   </style>
+</head>
+<body>
+    <h1>Lecture Attendance System</h1>
+    
+    <form action="attendance.php" method="post">
+        <label for="student">Select Student:</label>
+        <select name="student_id" id="student">
+            <!-- Options will be populated using PHP -->
+            <?php
+                include 'config.php';
+                $result = mysqli_query($conn, "SELECT * FROM Students");
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='{$row['student_id']}'>"{$row['first_name']} {$row['last_name']}</option>";
+                }
+            ?>
+        </select>
+
+        <label for="lecture">Select Lecture:</label>
+        <select name="lecture_id" id="lecture">
+            <!-- Options will be populated using PHP -->
+            <?php
+                $result = mysqli_query($conn, "SELECT * FROM Lectures");
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='{$row['lecture_id']}'>{$row['subject']} on {$row['date']}</option>";
+                }
+            ?>
+        </select>
+
+        <label for="status">Attendance Status:</label>
+        <select name="status" id="status">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+            <option value="Excused">Excused</option>
+        </select>
+
+        <button type="submit">Submit Attendance</button>
+    </form>
+    <script type="text/javascript">document.querySelector('form').addEventListener('submit', function(event) {
+    var student = document.getElementById('student').value;
+    var lecture = document.getElementById('lecture').value;
+
+    if (student === '' || lecture === '') {
+        event.preventDefault();
+        alert('Please select both a student and a lecture.');
+    }
+});
+</script>
+</body>
+</html>

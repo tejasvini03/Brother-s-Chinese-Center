@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		
+    .sidebar2 {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+    }
+
+    .sidebar2 a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidebar2 a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidebar2 .close-btn2 {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #app2 {
+        transition: margin-left .3s;
+        padding: 20px;
+    }
+
+    span {
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+	</style>
+</head>
+<body>
+	<div id="mySidebar2" class="sidebar2">
+    <a href="javascript:void(0)" class="close-btn2" onclick="closeNav()">×</a>
+    <a href="#">About Us</a>
+    <a href="#">Veg Menu</a>
+    <a href="#">Non-Veg Menu</a>
+</div>
+
+<!-- Main content area -->
+<div id="app2">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Open Menu</span>
+    <!-- The rest of your content goes here -->
+</div>
+<script>
+    // Open Sidebar
+    function openNav() {
+        document.getElementById("mySidebar2").style.width = "250px";  // Set sidebar width to 250px
+        document.getElementById("app2").style.marginLeft = "250px";   // Push the content to the right
+    }
+
+    // Close Sidebar
+    function closeNav() {
+        document.getElementById("mySidebar2").style.width = "0";  // Set sidebar width to 0
+        document.getElementById("app2").style.marginLeft = "0";   // Reset the content margin
+    }
+</script>
+
+</body>
+</html>

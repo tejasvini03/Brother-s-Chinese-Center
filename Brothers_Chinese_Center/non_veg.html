@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Table Restaurant</title>
+    <link rel="stylesheet" href="index.html">
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            background-color: #f8f8f8;
+            padding: 0;
+            margin-left: 10px;
+            margin-right: 30px;
+        }
+
+        .payment-btn {
+            background-color: #660000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center; /* Vertically and horizontally center the modal */
+            padding: 20px;
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 10px;
+            margin-right:40px;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 960px;  /* Limit container width */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #660000;
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: block;
+            margin: 0 auto 30px; /* Center the logo with margin below */
+            width: 80%;  /* Make the logo responsive */
+            max-width: 450px; /* Set a maximum width for the logo */
+            height: auto;
+        }
+
+        .menu-section {
+            margin-bottom: 30px;
+        }
+
+        .menu-section h2 {
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        /* Flexbox container for rows of menu items */
+        .menu-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .menu-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: calc(50% - 20px); /* Create two columns for larger screens */
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            background-color: #fff;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px); /* Hover effect */
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 250px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .spicy, .gluten-free, .bestseller {
+            background-color: #660000; /* Default red for spicy */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-size: 0.9em;
+        }
+
+        button {
+            background-color: ;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer ;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .sidebar2 {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background: linear-gradient(to right, #5A0808, #660000);
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .sidebar2 a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar2 a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar2 .close-btn2 {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #app2 {
+            transition: margin-left .3s;
+            padding: 20px;
+        }
+
+        span {
+            font-size: 30px;
+            cursor: pointer;
+            color: #660000;
+        }
+
+        /* Mobile responsiveness: Stack items in one column on small screens */
+        @media (max-width: 768px) {
+            .menu-item {
+                width: 100%; /* Stack items on smaller screens */
+            }
+
+            .menu-row {
+                flex-direction: column; /* Stack rows vertically */
+            }
+
+            .logo {
+                width: 70%; /* Make the logo a bit smaller on mobile */
+            }
+
+            h1, h2 {
+                font-size: 2em; /* Adjust heading size for mobile */
+            }
+
+            .menu-section h2 {
+                font-size: 1.5em; /* Adjust subheading size for mobile */
+            }
+
+            .menu-item img {
+                height: auto; /* Adjust image size on mobile */
+            }
+        }
+
+        h3 {
+            color: #660000;
+        }
+    </style>
+</head>
+<body>
+    <div id="mySidebar2" class="sidebar2">
+        <a href="javascript:void(0)" class="close-btn2" onclick="closeNav()">×</a>
+        <a href="page2.html">About Us</a>
+        <a href="main_meue.html">Veg Menu</a>
+        <a href="non_veg.html">Non-Veg Menu</a>
+    </div>
+
+    <!-- Main content area -->
+    <div id="app2">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    </div>
+
+    <div id="app">
+        <!-- Logo at the top of the page -->
+        <img src="logo2.jpg" alt="Logo" class="logo"> 
+
+        <h1>Non-Veg Menu</h1>
+
+        <div class="menu-section">
+            <h2 style="color: #DFD813;text-decoration: underline;">Rice</h2>
+            <div class="menu-row">
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/view-delicious-dish-food_23-2150777655.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Rice">
+                    <h3>Chicken Rice</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">60/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">120/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/high-angle-traditional-asian-dish-with-chopsticks_23-2148694367.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais _hybrid" alt="Chicken Schezwan Rice">
+                    <h3>Chicken Schezwan Rice</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">70/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">130/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/fried-pork-with-dried-chili-salt-dark-background_1150-45514.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Fried Rice">
+                    <h3>Chicken Fried Rice</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">60/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">120/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/premium-photo/mutton-lamb-biriyani-with-basmati-rice-served-bowl-moody-background_466689-72544.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Triple Rice">
+                    <h3>Chicken Triple Rice</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">90/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">170/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/premium-photo/bowl-boiled-rice-with-chicken-sweet-sour-sauce_518173-2989.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Hong Kong Rice">
+                    <h3>Chicken Hong Kong Rice</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">80/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">140/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/premium-photo/stir-fried-tofu-with-spicy-sauce-healthy-vegan-food-style_141438-4143.jpg?uid= R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Combination Rice">
+                    <h3>Chicken Combination Rice</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">80/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">140/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2 style="color: #DFD813;text-decoration: underline;">Noodles</h2>
+            <div class="menu-row">
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/premium-photo/asian-food-restaurant_7939-1967.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Noodles">
+                    <h3>Chicken Noodles</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">60/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">120/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/premium-photo/egg-schezwanor-hakka-noodles-popular-indochinese-food-served-bowl-with-chopsticks-selective-focus_466689-34634.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Schezwan Noodles">
+                    <h3>Chicken Schezwan Noodles</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">70/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">130/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/udon-noodles-with-chicken-peppers-japanese-cuisine_2829-11278.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Hakka Noodles">
+                    <h3>Chicken Hakka Noodles</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">60/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">120/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="lpaymentQR.png" alt="logo">
+ <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/plate-food-with-sauce-it-bowl-noodles_865967-23773.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Triple Noodles">
+                    <h3>Chicken Triple Noodles</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">90/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">170/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/egg-schezwanor-hakka-noodles-popular-indochinese-food-served-bowl-with-chopsticks-selective-focus_466689-34606.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Hong Kong Noodles">
+                    <h3>Chicken Hong Kong Noodles</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">80/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">140/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2 style="color: #DFD813;text-decoration: underline;">Soups</h2>
+            <div class="menu-row">
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/isolated-shot-white-bowl-with-hot-sour-soup-perfect-food-blog-menu-usage_181624-8524.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Soup">
+                    <h3>Chicken Soup</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">40/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">70/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/uzbek-nan-zharkop-stewed-soup-with-meat-dough_219193-7428.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Hot and Sour Soup">
+                    <h3>Chicken Hot and Sour Soup</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">50/-</p>
+                    <span class="gluten-free">Full</span>
+                    < p style="text-decoration: underline; font-weight: bold;">80/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/top-view-delicious-meat-soup-with-cooked-potatoes-meat-grey-space_140725-75717.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Manchow Soup">
+                    <h3>Chicken Manchow Soup</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">50/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">80/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/overhead-view-delicious-noodle-soup-with-chicken-wooden-cutting-board-dark-background-stock-image_140725-140846.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Noodles Soup">
+                    <h3>Chicken Noodles Soup</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">50/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">80/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/veg-chicken-manchurian-with-gravy-popular-food-india-served-bowl-with-chopstick_466689-33799.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Manchurian">
+                    <h3>Chicken Manchurian</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">90/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">160/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/kung-pao-chicken-stirfried-traditional-chinese-sichuan-dish_431906-339.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Chilli">
+                    <h3>Chicken Chilli</h3>
+                    <span class ="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">90/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">160/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/bucket-full-crispy-kentucky-fried-chicken-with-smoke-barbecue-sauce-brown-background-selective-focus_70216-5718.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Crispy">
+                    <h3>Chicken Crispy</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">90/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">160/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://img.freepik.com/free-photo/fried-chicken-french-fries-black-cement-floor_1150-28542.jpg?uid=R179958708&ga=GA1.1.1970514097.1734395597&semt=ais_hybrid" alt="Chicken Lollipop">
+                    <h3>Chicken Lollipop</h3>
+                    <span class="spicy">Half</span>
+                    <p style="text-decoration: underline; font-weight: bold;">90/-</p>
+                    <span class="gluten-free">Full</span>
+                    <p style="text-decoration: underline; font-weight: bold;">150/-</p>
+                    <button class="payment-btn" onclick="openModal(this)">Make Payment</button>
+
+                    <div class="modal paymentModal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal(this)">&times;</span>
+                            <img src="paymentQR.png" alt="logo">
+                            <p style="color:#660000">Scan for payment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openNav() {
+                document.getElementById("mySidebar2").style.width = "250px";  // Set sidebar width to 250px
+                document.getElementById("app2").style.marginLeft = "250px";   // Push the content to the right
+            }
+
+            function closeNav() {
+                document.getElementById("mySidebar2").style.width = "0";  // Set sidebar width to 0
+                document.getElementById("app2").style.marginLeft = "0";   // Reset the content margin
+            }
+
+            function openModal(button) {
+                const modal = button.nextElementSibling; // Get the next sibling modal
+                modal.style.display = "flex";  // Use flex to center modal
+            }
+
+            function closeModal(span) {
+                const modal = span.closest('.modal'); // Get the closest modal
+                modal.style.display = "none";
+            }
+
+            // Close the modal if the user clicks outside the modal content
+            window.onclick = function(event) {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
